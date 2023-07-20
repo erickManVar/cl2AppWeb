@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Listado de Personas</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"> Control de Personas</a>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" th:href="@{/personas}">Control de Personas</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <h1>Lista de Personas</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/personas/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Persona</a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="persona : ${personas}">
+            <td th:text="${persona.nombre}">Nombre</td>
+            <td th:text="${persona.apellido}">Apellido</td>
+            <td th:text="${persona.dni}">DNI</td>
+            <td th:text="${persona.edad}">Edad</td>
+            <td>
+                <a th:href="@{/personas/editar/{id}(id=${persona.id})}" class="btn btn-info">Editar</a>
+                <a th:href="@{/personas/eliminar/{id}(id=${persona.id})}" class="btn btn-danger">Eliminar</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
